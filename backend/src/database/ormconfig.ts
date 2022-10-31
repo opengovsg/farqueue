@@ -1,14 +1,14 @@
 import 'reflect-metadata'
 
+import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 import convict from 'convict'
 import { join } from 'path'
-import { DataSource, DataSourceOptions } from 'typeorm'
 
 import { schema } from '../config/config.schema'
 
 const config = convict(schema)
 
-export const base = {
+export default {
   type: 'postgres',
   host: config.get('database.host'),
   port: config.get('database.port'),
@@ -24,12 +24,12 @@ export const base = {
   ...(config.get('database.ca')
     ? { ssl: { ca: config.get('database.ca') } }
     : {}),
+  cli: {
+    migrationsDir: join(__dirname, 'migrations'),
+  },
   // ref: https://github.com/typeorm/typeorm/issues/3388 to set pool size
   extra: {
     min: config.get('database.minPool'),
     max: config.get('database.maxPool'),
   },
-} as DataSourceOptions
-
-const dataSource = new DataSource(base)
-export default dataSource
+} as TypeOrmModuleOptions

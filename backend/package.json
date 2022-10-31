@@ -22,14 +22,11 @@
     "env:put": "ENV=${ENV:-'development'} node scripts/env/putter.mjs",
     "pino-pretty": "pino-pretty --hideObject -i pid,hostname -t SYS:standard -o '\u001b[33m[{req.id}]\u001b[0m \u001b[32m[{scope}]\u001b[0m {msg}'",
     "pino-datadog": "if [ -n \"${DD_API_KEY}\" ]; then pino-datadog; else cat; fi",
-    "migration:gen": "run (){ npm run preload -- typeorm-ts-node-esm migration:generate \"src/modules/database/migrations/$1\" -d src/database/datasource.ts; } run",
+    "migration:gen": "run (){ npm run preload -- typeorm-ts-node-esm migration:generate \"src/database/migrations/$1\" -d src/database/datasource.ts; }; run",
     "migration:show": "npm run preload -- typeorm-ts-node-esm migration:show -d src/database/datasource.ts",
     "migration:run": "npm run preload -- typeorm-ts-node-esm migration:run -d src/database/datasource.ts",
     "migration:revert": "npm run preload -- typeorm-ts-node-esm migration:revert -d src/database/datasource.ts",
-    "seed:gen": "npm run preload -- typeorm-ts-node-esm migration:generate -d src/database/datasource-seed.ts",
-    "seed:show": "npm run preload -- typeorm-ts-node-esm migration:show -d src/database/datasource-seed.ts",
-    "seed:run": "npm run preload -- typeorm-ts-node-esm migration:run -d src/database/datasource-seed.ts",
-    "seed:revert": "npm run preload -- typeorm-ts-node-esm migration:revert -d src/database/datasource-seed.ts"
+    "seed:drop": "npm run preload -- ts-node --project tsconfig.json -r tsconfig-paths/register src/database/drop-seed.ts && npm run migration:run"
   },
   "dependencies": {
     "@nestjs/common": "^9.1.4",

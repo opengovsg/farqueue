@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm'
+
+import { Reporter } from './reporter.entity'
 
 export const INSTITUTIONS = [
   'AH',
@@ -29,7 +32,9 @@ export class Report {
   institution!: Institution
 
   @Column('varchar', { length: 255 })
-  reporter!: string
+  reporterId: string
+  @ManyToOne(() => Reporter, (reporter) => reporter.reports)
+  reporter: Reporter
 
   @Column('boolean')
   active!: boolean
