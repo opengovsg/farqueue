@@ -4,7 +4,7 @@ import { Client } from 'pg'
 
 import { ConfigService } from '../config/config.service'
 
-import { base } from './ormconfig'
+import base from './ormconfig'
 
 @Injectable()
 export class DatabaseConfigService implements TypeOrmOptionsFactory {

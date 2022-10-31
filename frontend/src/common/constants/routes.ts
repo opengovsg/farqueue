@@ -4,6 +4,7 @@ export const routes = {
   health: '/health',
   oops: '/oops',
   concept1: '/concept1',
+  concept1Contribute: '/concept1/contribute',
   concept2: '/concept2',
   concept3: '/concept3',
 }

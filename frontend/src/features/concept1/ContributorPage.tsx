@@ -34,7 +34,7 @@ const waits: WaitTime[] = [
   { label: 'TTSH', fullName: 'Tan Tock Seng Hospital', wait: 120 },
 ]
 
-export const DashboardPage = (): JSX.Element => {
+export const ContributorPage = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
