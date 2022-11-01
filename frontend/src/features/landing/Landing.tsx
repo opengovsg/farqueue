@@ -1,5 +1,12 @@
 import { useNavigate } from 'react-router-dom'
-import { Button, Flex, StackDivider, Text, VStack } from '@chakra-ui/react'
+import {
+  Button,
+  Flex,
+  Link,
+  StackDivider,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
 
 import { routes } from '~/common/constants/routes'
 
@@ -20,9 +27,9 @@ export const Landing = () => {
           <Button w="full" onClick={() => navigate(routes.concept1)}>
             The TV screen
           </Button>
-          <Button onClick={() => navigate(routes.concept1Contribute)}>
-            Contributor Form
-          </Button>
+          <Link href="https://form.gov.sg/6351103151634c00116ca800" isExternal>
+            <Button>Contributor Form</Button>
+          </Link>
         </VStack>
       </Flex>
 
@@ -41,7 +48,9 @@ export const Landing = () => {
           <Button onClick={() => navigate(routes.concept3)}>
             User website
           </Button>
-          <Button>FAQ website</Button>
+          <Link href="https://covid.gov.sg" isExternal>
+            <Button>FAQ website</Button>
+          </Link>
         </VStack>
       </Flex>
     </VStack>
