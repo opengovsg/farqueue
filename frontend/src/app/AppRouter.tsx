@@ -9,6 +9,7 @@ import { LoginPage } from '~/features/auth/LoginPage'
 import { ConceptOne, ContributorPage } from '~/features/concept1'
 import { ConceptTwo } from '~/features/concept2'
 import { ConceptThree } from '~/features/concept3'
+import { Landing } from '~/features/landing'
 
 const HealthPage = lazy(() => import('~/features/health/HealthPage'))
 import { Oops } from '~/features/oops'
@@ -27,7 +28,7 @@ export const AppRouter = (): JSX.Element => {
           path={routes.index}
           element={
             <PublicRoute>
-              <ConceptOne />
+              <Landing />
             </PublicRoute>
           }
         />
