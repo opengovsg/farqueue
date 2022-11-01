@@ -1,2 +1,2 @@
+export * from './ConceptOne'
 export * from './ContributorPage'
-export * from './DashboardPage'

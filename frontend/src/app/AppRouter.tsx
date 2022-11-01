@@ -6,8 +6,9 @@ import { PrivateRoute } from '~/app/PrivateRoute'
 import { PublicRoute } from '~/app/PublicRoute'
 import { routes } from '~/common/constants/routes'
 import { LoginPage } from '~/features/auth/LoginPage'
-import { ContributorPage, DashboardPage } from '~/features/concept1'
-import { DashboardPage as DashboardPage2 } from '~/features/concept2'
+import { ConceptOne, ContributorPage } from '~/features/concept1'
+import { ConceptTwo } from '~/features/concept2'
+import { ConceptThree } from '~/features/concept3'
 
 const HealthPage = lazy(() => import('~/features/health/HealthPage'))
 import { Oops } from '~/features/oops'
@@ -26,7 +27,7 @@ export const AppRouter = (): JSX.Element => {
           path={routes.index}
           element={
             <PublicRoute>
-              <DashboardPage />
+              <ConceptOne />
             </PublicRoute>
           }
         />
@@ -34,7 +35,7 @@ export const AppRouter = (): JSX.Element => {
           path={routes.concept1}
           element={
             <PublicRoute>
-              <DashboardPage />
+              <ConceptOne />
             </PublicRoute>
           }
         />
@@ -51,7 +52,16 @@ export const AppRouter = (): JSX.Element => {
           path={routes.concept2}
           element={
             <PublicRoute>
-              <DashboardPage2 />
+              <ConceptTwo />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path={routes.concept3}
+          element={
+            <PublicRoute>
+              <ConceptThree />
             </PublicRoute>
           }
         />

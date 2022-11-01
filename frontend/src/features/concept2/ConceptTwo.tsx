@@ -31,7 +31,7 @@ const waits: WaitTime[] = [
   { label: 'E Medical Clinic & Surgery', subtitle: '1.5 km away', wait: 10 },
 ]
 
-export const DashboardPage = (): JSX.Element => {
+export const ConceptTwo = (): JSX.Element => {
   const { location } = useParamsLocation()
 
   return (
