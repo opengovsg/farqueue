@@ -95,17 +95,17 @@ jobs:
       - name: Replace AWS_ACCOUNT_ID/ENV in task definition file
         id: replace-variables
         run: |
-          sed -i 's/<AWS_ACCOUNT_ID>/${{ inputs.aws-account-id }}/g' application/ecs-task-definition.json
-          sed -i 's/<ENV>/${{ inputs.environment }}/g' application/ecs-task-definition.json
-          sed -i 's/<ECS_TASK_ROLE>/${{ inputs.ecs-task-role }}/g' application/ecs-task-definition.json
-          sed -i 's/<ECS_EXECUTION_ROLE>/${{ inputs.ecs-execution-role }}/g' application/ecs-task-definition.json
-          sed -i 's/<ECS_TASK_FAMILY>/${{ inputs.ecs-task-family }}/g' application/ecs-task-definition.json
+          sed -i 's/<AWS_ACCOUNT_ID>/${{ inputs.aws-account-id }}/g' ecs-task-definition.json
+          sed -i 's/<ENV>/${{ inputs.environment }}/g' ecs-task-definition.json
+          sed -i 's/<ECS_TASK_ROLE>/${{ inputs.ecs-task-role }}/g' ecs-task-definition.json
+          sed -i 's/<ECS_EXECUTION_ROLE>/${{ inputs.ecs-execution-role }}/g' ecs-task-definition.json
+          sed -i 's/<ECS_TASK_FAMILY>/${{ inputs.ecs-task-family }}/g' ecs-task-definition.json
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: application/ecs-task-definition.json
+          task-definition: ecs-task-definition.json
           container-name: ${{ inputs.ecs-container-name }}
           image: ${{ steps.build-image.outputs.image }}
 
@@ -115,6 +115,6 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           cluster: ${{ inputs.ecs-cluster-name }}
           service: ${{ inputs.ecs-service-name }}
-          codedeploy-appspec: application/appspec.json
+          codedeploy-appspec: appspec.json
           codedeploy-application: ${{ inputs.codedeploy-application }}
           codedeploy-deployment-group: ${{ inputs.codedeploy-deployment-group }}
