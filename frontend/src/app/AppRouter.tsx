@@ -8,7 +8,7 @@ import { routes } from '~/common/constants/routes'
 import { LoginPage } from '~/features/auth/LoginPage'
 import { ConceptOne, ContributorPage } from '~/features/concept1'
 import { ConceptTwo } from '~/features/concept2'
-import { ConceptThree } from '~/features/concept3'
+import { ConceptThreePersonalized, ConceptThreeTv } from '~/features/concept3'
 import { Landing } from '~/features/landing'
 
 const HealthPage = lazy(() => import('~/features/health/HealthPage'))
@@ -62,7 +62,16 @@ export const AppRouter = (): JSX.Element => {
           path={routes.concept3}
           element={
             <PublicRoute>
-              <ConceptThree />
+              <ConceptThreeTv />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path={routes.concept3Patient}
+          element={
+            <PublicRoute>
+              <ConceptThreePersonalized />
             </PublicRoute>
           }
         />

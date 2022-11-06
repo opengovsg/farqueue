@@ -13,12 +13,12 @@ export const Oops = (): JSX.Element => {
       <VStack>
         <Text textStyle="h2">Oops! Something went wrong.</Text>
         <Text textStyle="h2">We are working on it.</Text>
-        <Text color="neutral.700">
+        {/* <Text color="neutral.700">
           Submit a support request{' '}
           <Link target="_blank" href="https://go.gov.sg/care360-support">
             here
           </Link>
-        </Text>
+        </Text> */}
       </VStack>
       <Link
         as={RouterLink}

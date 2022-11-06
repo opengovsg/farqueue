@@ -1,1 +1,2 @@
-export * from './ConceptThree'
+export * from './ConceptThreePersonalized'
+export * from './ConceptThreeTv'
