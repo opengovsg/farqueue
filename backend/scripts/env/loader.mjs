@@ -18,7 +18,7 @@ async function loadAllParameters() {
     exit(0)
   }
   const client = new SSMClient({ region: 'ap-southeast-1' })
-  const prefix = `/application/${process.env.ENV}/`
+  const prefix = `/fq/${process.env.ENV}/`
   const params = {}
 
   let nextToken

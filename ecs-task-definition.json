@@ -36,27 +36,27 @@
       "secrets": [
         {
           "name": "DB_HOST",
-          "valueFrom": "/app/backend/DB_HOST"
+          "valueFrom": "/fq/<ENV>/DB_HOST"
         },
         {
           "name": "DB_NAME",
-          "valueFrom": "/app/backend/DB_NAME"
+          "valueFrom": "/fq/<ENV>/DB_NAME"
         },
         {
           "name": "DB_PASSWORD",
-          "valueFrom": "/app/backend/DB_PASSWORD"
+          "valueFrom": "/fq/<ENV>/DB_PASSWORD"
         },
         {
           "name": "DB_USERNAME",
-          "valueFrom": "/app/backend/DB_USERNAME"
+          "valueFrom": "/fq/<ENV>/DB_USERNAME"
         },
         {
           "name": "NODE_ENV",
-          "valueFrom": "/app/backend/NODE_ENV"
+          "valueFrom": "/fq/<ENV>/NODE_ENV"
         },
         {
           "name": "SESSION_SECRET",
-          "valueFrom": "/app/backend/SESSION_SECRET"
+          "valueFrom": "/fq/<ENV>/SESSION_SECRET"
         }
       ],
       "logConfiguration": {

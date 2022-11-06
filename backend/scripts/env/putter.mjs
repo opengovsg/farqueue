@@ -17,7 +17,7 @@ async function putAllParameters() {
   }
 
   const client = new SSMClient({ region: 'ap-southeast-1' })
-  const prefix = `/application/${process.env.ENV}/`
+  const prefix = `/fq/${process.env.ENV}/`
   const params = {}
 
   let nextToken
@@ -53,11 +53,11 @@ async function putAllParameters() {
     if (Object.keys(params).includes(k) && params[k] !== v) {
       // different values, set override flag
       console.log(
-        `aws ssm put-parameter --overwrite --name /application/${process.env.ENV}/${k} --value ${v} --type String`,
+        `aws ssm put-parameter --overwrite --name /fq/${process.env.ENV}/${k} --value ${v} --type String`,
       )
     } else if (!Object.keys(params).includes(k)) {
       console.log(
-        `aws ssm put-parameter --name /application/${process.env.ENV}/${k} --value ${v} --type String`,
+        `aws ssm put-parameter --name /fq/${process.env.ENV}/${k} --value ${v} --type String`,
       )
     }
   }
