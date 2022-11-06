@@ -2,24 +2,34 @@ name: AWS Deploy
 
 on:
   workflow_call:
-    secrets:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        type: string
       aws-account-id:
         description: 'AWS account ID to use'
         required: true
-      cicd-role:
-        description: 'AWS IAM role to assume by GitHub action runner'
-        required: true
-      ecr-repository:
-        description: 'ECR repository to push image to'
-        required: true
-    inputs:
+        type: string
       aws-region:
         description: 'AWS region to use'
         required: true
         default: 'ap-southeast-1'
         type: string
+      cicd-role:
+        description: 'AWS IAM role to assume by GitHub action runner'
+        required: true
+        type: string
+      ecr-repository:
+        description: 'ECR repository to push image to'
+        required: true
+        type: string
       ecs-cluster-name:
         description: 'ECS cluster to deploy to'
+        required: true
+        type: string
+      ecs-task-family:
+        description: 'ECS task definition without version number'
         required: true
         type: string
       ecs-service-name:
@@ -30,16 +40,20 @@ on:
         description: 'Name of container in ECS task definition'
         required: true
         type: string
+      ecs-task-role:
+        description: 'Name of IAM role the scheduler uses'
+        required: true
+        type: string
+      ecs-execution-role:
+        description: 'Name of IAM role the ECS runtime application uses'
+        required: true
+        type: string
       codedeploy-application:
         description: 'CodeDeploy application to use'
         required: true
         type: string
       codedeploy-deployment-group:
         description: 'CodeDeploy deployment group to use'
-        required: true
-        type: string
-      image-tag:
-        description: 'The locally tagged docker image to push to ECR'
         required: true
         type: string
 
@@ -53,12 +67,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v1-node16
         with:
-          role-to-assume: ${{ secrets.cicd-role }}
+          role-to-assume: ${{ inputs.cicd-role }}
           role-session-name: github-action-application-deploy
           aws-region: ${{ inputs.aws-region }}
 
@@ -66,29 +80,34 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Push image to ECR
-        id: push-image
+      - name: Build and push image to ECR
+        id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.ecr-repository }}
-          IMAGE_TAG: ${{ inputs.image-tag }}
+          ECR_REPOSITORY: ${{ inputs.ecr-repository }}
+          ENV: ${{ inputs.environment }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build --build-arg ENV=$ENV -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      - name: Replace AWS_ACCOUNT_ID in task definition file
-        id: replace-aws-account-id
+      - name: Replace AWS_ACCOUNT_ID/ENV in task definition file
+        id: replace-variables
         run: |
-          sed -i 's/<AWS_ACCOUNT_ID>/${{ secrets.aws-account-id }}/g' ecs-task-definition.json
+          sed -i 's/<AWS_ACCOUNT_ID>/${{ inputs.aws-account-id }}/g' application/ecs-task-definition.json
+          sed -i 's/<ENV>/${{ inputs.environment }}/g' application/ecs-task-definition.json
+          sed -i 's/<ECS_TASK_ROLE>/${{ inputs.ecs-task-role }}/g' application/ecs-task-definition.json
+          sed -i 's/<ECS_EXECUTION_ROLE>/${{ inputs.ecs-execution-role }}/g' application/ecs-task-definition.json
+          sed -i 's/<ECS_TASK_FAMILY>/${{ inputs.ecs-task-family }}/g' application/ecs-task-definition.json
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ecs-task-definition.json
+          task-definition: application/ecs-task-definition.json
           container-name: ${{ inputs.ecs-container-name }}
-          image: ${{ steps.push-image.outputs.image }}
+          image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
@@ -96,7 +115,6 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           cluster: ${{ inputs.ecs-cluster-name }}
           service: ${{ inputs.ecs-service-name }}
-          wait-for-service-stability: true
-          codedeploy-appspec: appspec.json
+          codedeploy-appspec: application/appspec.json
           codedeploy-application: ${{ inputs.codedeploy-application }}
           codedeploy-deployment-group: ${{ inputs.codedeploy-deployment-group }}

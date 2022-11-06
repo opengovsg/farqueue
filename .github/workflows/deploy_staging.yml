@@ -1,0 +1,29 @@
+name: Deploy to staging
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    name: Deploy
+    uses: ./.github/workflows/aws_deploy.yml
+    with:
+      environment: 'staging'
+      aws-region: 'ap-southeast-1'
+      aws-account-id: '381734078069'
+      cicd-role: 'arn:aws:iam::381734078069:role/mc-staging-github-actions-role-e5a9e0c'
+      ecr-repository: 'fq-application'
+      ecs-cluster-name: 'fq-stg-ecs-ceb7b12'
+      ecs-service-name: 'fq-stg-ecs-service-c266ea7'
+      ecs-task-family: 'fq-stg-ecs'
+      ecs-container-name: 'container'
+      ecs-task-role: 'mc-staging-service-task-69601b9'
+      ecs-execution-role: 'mc-staging-service-execution-2c6cd38'
+      codedeploy-application: 'fq-stg-ecs-app-9cafa9e'
+      codedeploy-deployment-group: 'fq-stg-ecs-dg'
