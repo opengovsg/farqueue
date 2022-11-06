@@ -22,7 +22,7 @@ jobs:
       ecs-cluster-name: 'fq-stg-ecs-ceb7b12'
       ecs-service-name: 'fq-stg-ecs-service-c266ea7'
       ecs-task-family: 'fq-stg-ecs'
-      ecs-container-name: 'container'
+      ecs-container-name: 'application'
       ecs-task-role: 'mc-staging-service-task-69601b9'
       ecs-execution-role: 'mc-staging-service-execution-2c6cd38'
       codedeploy-application: 'fq-stg-ecs-app-9cafa9e'
