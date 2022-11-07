@@ -57,7 +57,7 @@ export const schema: Schema<ConfigSchema> = {
     doc: 'The port that the service listens on',
     env: 'PORT',
     format: 'int',
-    default: 8080,
+    default: 80,
   },
   environment: {
     doc: 'The environment that Node.js is running in',

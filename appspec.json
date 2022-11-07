@@ -8,7 +8,7 @@
           "TaskDefinition": "this will be replaced",
           "LoadBalancerInfo": {
             "ContainerName": "application",
-            "ContainerPort": 8080
+            "ContainerPort": 80
           }
         }
       }

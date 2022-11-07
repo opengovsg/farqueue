@@ -18,5 +18,5 @@ COPY --from=node-modules-builder /usr/src/app/shared ./shared
 COPY --from=node-modules-builder /usr/src/app/node_modules ./node_modules
 COPY --from=node-modules-builder /usr/src/app/package.json ./
 
-EXPOSE 8080
+EXPOSE 80
 CMD ["npm", "run", "start"]
