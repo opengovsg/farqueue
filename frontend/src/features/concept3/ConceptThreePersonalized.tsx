@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom'
-import { HStack, Spacer, Text, VStack } from '@chakra-ui/react'
+import { HStack, Text, VStack } from '@chakra-ui/react'
 import dayjs from 'dayjs'
 
 import { LastModifiedText } from '~/common/LastModifiedText'
 import { Timeline } from '~/common/Timeline'
 import { TimelineRowProps } from '~/common/Timeline/TimelineRow'
 
+import { LeaveNoteEditable } from './LeaveNoteEditable'
 import { LegendRow } from './Legend'
 
 // MOCK
@@ -36,14 +37,15 @@ export const ConceptThreePersonalized = (): JSX.Element => {
   return (
     <VStack
       w="100vw"
-      spacing={4}
+      spacing={12}
       p={10}
+      px={20}
       backgroundColor="neutral.100"
       alignItems="center"
     >
       <Text textStyle="h1">Live status</Text>
 
-      <HStack w="full" spacing={10} px={10}>
+      <HStack w="full" spacing={10}>
         <VStack align="start" minW="25vw" spacing={6}>
           <VStack w="full" align="start">
             <Text textStyle="body-2">Patient Name</Text>
@@ -58,12 +60,12 @@ export const ConceptThreePersonalized = (): JSX.Element => {
             <Text textStyle="body-2">Status</Text>
             <LegendRow isSeeingDoctor={false} isContactable={true} />
           </VStack>
-          <Spacer />
           <LastModifiedText lastRetrieved={dayjs().subtract(5, 'minutes')} />
         </VStack>
 
         <Timeline rows={events} />
       </HStack>
+      <LeaveNoteEditable />
     </VStack>
   )
 }
