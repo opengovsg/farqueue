@@ -21,12 +21,16 @@ const ICONS = [
   {
     icon: <MdOutlineHealthAndSafety />,
     label: 'Seeing a doctor',
-    accessor: (props: PatientRowProps) => props.isSeeingDoctor,
+    accessor: (
+      props: Pick<PatientRowProps, 'isContactable' | 'isSeeingDoctor'>,
+    ) => props.isSeeingDoctor,
   },
   {
     icon: <BiPhone />,
     label: 'Contactable',
-    accessor: (props: PatientRowProps) => props.isContactable,
+    accessor: (
+      props: Pick<PatientRowProps, 'isContactable' | 'isSeeingDoctor'>,
+    ) => props.isContactable,
   },
 ] as const
 
@@ -64,7 +68,9 @@ export const Legend = (): JSX.Element => {
   )
 }
 
-export const LegendRow = (props: PatientRowProps): JSX.Element => {
+export const LegendRow = (
+  props: Pick<PatientRowProps, 'isContactable' | 'isSeeingDoctor'>,
+): JSX.Element => {
   return (
     <ButtonGroup>
       {ICONS.map(({ icon, label, accessor }) => {

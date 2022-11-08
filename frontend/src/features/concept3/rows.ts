@@ -34,4 +34,37 @@ export const rows: PatientRowProps[] = [
     isContactable: true,
     isSeeingDoctor: false,
   },
+  {
+    name: 'Bartholomew Tan',
+    uin: 'S9812332Z',
+    wait: '18 min ago',
+    location: 'Radioology Dept.',
+    isContactable: true,
+    isSeeingDoctor: true,
+  },
+  {
+    name: 'Elmo Mae',
+    uin: 'S26028342B',
+    wait: '19 min ago',
+    location: 'Radiology Dept.',
+    isContactable: false,
+    isSeeingDoctor: true,
+  },
+  {
+    name: 'Big Bird',
+    uin: 'T1238934A',
+    wait: '6 min ago',
+    location: 'Anaesthesia',
+    isContactable: false,
+    isSeeingDoctor: false,
+  },
+
+  {
+    name: 'Grover Bean',
+    uin: 'T1234002L',
+    wait: '39 min ago',
+    location: 'Pharmacy',
+    isContactable: false,
+    isSeeingDoctor: false,
+  },
 ]

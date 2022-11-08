@@ -45,11 +45,17 @@ export const Landing = () => {
       <Flex flexDir="row" justify="space-between" w="full">
         <Text textStyle="h1">Concept 3 - Where is my NOK?</Text>
         <VStack align="start">
-          <Button onClick={() => navigate(routes.concept3)}>
+          <Button onClick={() => navigate(routes.concept3)} w="full">
+            The TV screen
+          </Button>
+          <Button
+            onClick={() => navigate(`${routes.concept3}/S2608398B`)}
+            w="full"
+          >
             User website
           </Button>
-          <Link href="https://covid.gov.sg" isExternal>
-            <Button>FAQ website</Button>
+          <Link href="https://covid.gov.sg" isExternal w="full">
+            <Button w="full">FAQ website</Button>
           </Link>
         </VStack>
       </Flex>

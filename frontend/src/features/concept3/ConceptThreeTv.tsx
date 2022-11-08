@@ -1,9 +1,17 @@
-import { Box, Text, VStack } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { Box, Collapse, Text, useDisclosure, VStack } from '@chakra-ui/react'
 
 import { PatientRow, PatientTableHeader } from './PatientRow'
 import { rows } from './rows'
 
 export const ConceptThreeTv = (): JSX.Element => {
+  const { isOpen, onToggle } = useDisclosure()
+
+  useEffect(() => {
+    const intervalId = setInterval(() => onToggle(), 5000)
+    return () => clearInterval(intervalId)
+  }, [onToggle])
+
   return (
     <VStack
       h="100vh"
@@ -13,12 +21,15 @@ export const ConceptThreeTv = (): JSX.Element => {
       p={10}
       backgroundColor="neutral.100"
     >
-      <Text textStyle="h1">Patient Dashboard</Text>
-
+      <Text textStyle="h1">Patients in-progress</Text>
       <Box h={10} w="full" />
       <PatientTableHeader />
-      {rows.map((row) => (
-        <PatientRow key={row.uin} {...row} />
+      {rows.map((row, idx) => (
+        <Box w="full" key={row.uin}>
+          <Collapse in={idx % 2 === 0 ? isOpen : !isOpen} animateOpacity>
+            <PatientRow {...row} />
+          </Collapse>
+        </Box>
       ))}
     </VStack>
   )

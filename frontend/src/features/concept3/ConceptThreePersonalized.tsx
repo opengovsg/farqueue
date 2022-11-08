@@ -1,39 +1,69 @@
-import { useMemo, useState } from 'react'
-import { Box, VStack } from '@chakra-ui/react'
+import { useParams } from 'react-router-dom'
+import { HStack, Spacer, Text, VStack } from '@chakra-ui/react'
+import dayjs from 'dayjs'
 
-import { SearchBar } from '~/common/SearchBar'
+import { LastModifiedText } from '~/common/LastModifiedText'
+import { Timeline } from '~/common/Timeline'
+import { TimelineRowProps } from '~/common/Timeline/TimelineRow'
 
-import { PatientRow, PatientTableHeader } from './PatientRow'
-import { rows } from './rows'
+import { LegendRow } from './Legend'
+
+// MOCK
+const events: TimelineRowProps[] = [
+  {
+    headerText: 'Admitted to TTSH Emergency Department',
+    createdAt: dayjs().subtract(9, 'hours').toDate(),
+  },
+  {
+    headerText: 'Admitted to ICU',
+    createdAt: dayjs().subtract(7, 'hours').subtract(24, 'minute').toDate(),
+  },
+  {
+    headerText: 'Admitted to Radiology (L5-R3)',
+    createdAt: dayjs().subtract(5, 'hours').subtract(12, 'minute').toDate(),
+  },
+  {
+    headerText: 'Warded at L4 (Room 4)',
+    createdAt: dayjs().subtract(3, 'hours').subtract(12, 'minute').toDate(),
+  },
+]
 
 export const ConceptThreePersonalized = (): JSX.Element => {
-  const [searchTerm, setSearchTerm] = useState('')
+  const { uin } = useParams()
 
-  const filteredRows = useMemo(() => {
-    return rows.filter((row) =>
-      row.name.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-  }, [searchTerm])
+  console.log(uin)
 
   return (
     <VStack
-      h="100vh"
       w="100vw"
-      alignItems="center"
       spacing={4}
       p={10}
       backgroundColor="neutral.100"
+      alignItems="center"
     >
-      <SearchBar
-        placeholder="e.g. Tan Ah Kow"
-        searchTerm={searchTerm}
-        onSearch={setSearchTerm}
-      />
-      <Box h={10} w="full" />
-      <PatientTableHeader />
-      {filteredRows.map((row) => (
-        <PatientRow key={row.uin} {...row} />
-      ))}
+      <Text textStyle="h1">Live status</Text>
+
+      <HStack w="full" spacing={10} px={10}>
+        <VStack align="start" minW="25vw" spacing={6}>
+          <VStack w="full" align="start">
+            <Text textStyle="body-2">Patient Name</Text>
+            <Text textStyle="h4">Grover Lee</Text>
+          </VStack>
+
+          <VStack w="full" align="start">
+            <Text textStyle="body-2">Current Location</Text>
+            <Text textStyle="h4">{`L4 (Room 4)`}</Text>
+          </VStack>
+          <VStack w="full" align="start">
+            <Text textStyle="body-2">Status</Text>
+            <LegendRow isSeeingDoctor={false} isContactable={true} />
+          </VStack>
+          <Spacer />
+          <LastModifiedText lastRetrieved={dayjs().subtract(5, 'minutes')} />
+        </VStack>
+
+        <Timeline rows={events} />
+      </HStack>
     </VStack>
   )
 }
