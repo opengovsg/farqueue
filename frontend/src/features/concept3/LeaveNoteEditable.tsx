@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { BiPlus } from 'react-icons/bi'
-import { RiPulseLine } from 'react-icons/ri'
 import {
   Box,
   Button,
@@ -13,7 +12,6 @@ import {
 import dayjs from 'dayjs'
 
 import EnvelopeSvg from '~/assets/svgs/envelope.svg'
-import { AccordionCard } from '~/common/AccordionCard'
 import {
   Editable,
   EditableCancel,
@@ -74,36 +72,26 @@ export const LeaveNoteEditable = (): JSX.Element => {
         <Image src={EnvelopeSvg} alt="envelope" />
         <Box fontWeight="medium">No note added yet.</Box>
         <Button p={0} variant="link" rightIcon={<BiPlus />} onClick={onEdit}>
-          Leave a note
+          Leave a note for our staff
         </Button>
       </VStack>
     )
   }
 
   return (
-    <AccordionCard
-      isCollapsible={false}
-      header={
-        <HStack>
-          <RiPulseLine />
-          <Text>Leave a note for our staff</Text>
-        </HStack>
-      }
-    >
-      <Editable
-        closeOnBlur={false}
-        initialValue={note}
-        onSubmit={(content) => {
-          setNote(content as string)
-          toast({
-            title: 'Note saved. It will be viewable by our staff.',
-            status: 'success',
-          })
-        }}
-        editView={<DiagnosisEditView />}
-        plainView={<DiagnosisPlainView />}
-        emptyView={<DiagnosisEmptyView />}
-      />
-    </AccordionCard>
+    <Editable
+      closeOnBlur={false}
+      initialValue={note}
+      onSubmit={(content) => {
+        setNote(content as string)
+        toast({
+          title: 'Note saved. It will be viewable by our staff.',
+          status: 'success',
+        })
+      }}
+      editView={<DiagnosisEditView />}
+      plainView={<DiagnosisPlainView />}
+      emptyView={<DiagnosisEmptyView />}
+    />
   )
 }

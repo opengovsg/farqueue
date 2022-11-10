@@ -1,14 +1,10 @@
 import { RiClipboardFill } from 'react-icons/ri'
 import { Box, HStack, Text } from '@chakra-ui/react'
-import dayjs from 'dayjs'
 import _ from 'lodash'
 
-export type TimelineRowProps = {
-  headerText: string
-  createdAt: Date
-}
+import { TimelineRowProps } from './timeline.types'
 
-export const TimelineRow = ({ headerText, createdAt }: TimelineRowProps) => {
+export const TimelineRow = ({ headerText, happenedAt }: TimelineRowProps) => {
   return (
     <HStack
       justifyContent="space-between"
@@ -19,6 +15,7 @@ export const TimelineRow = ({ headerText, createdAt }: TimelineRowProps) => {
     >
       <HStack spacing={5} alignItems="start">
         <Box
+          flexShrink={0}
           backgroundColor="#BABECB"
           borderRadius="50%"
           h={'24px'}
@@ -28,19 +25,17 @@ export const TimelineRow = ({ headerText, createdAt }: TimelineRowProps) => {
           justifyContent="center"
           position="relative"
           zIndex={1}
+          color="white"
+          fontSize={'12px'}
         >
-          <Box color="white" fontSize={'12px'}>
-            <RiClipboardFill />
-          </Box>
+          <RiClipboardFill />
         </Box>
 
-        <Box>
-          <Text>{headerText}</Text>
-        </Box>
+        <Text>{headerText}</Text>
       </HStack>
 
       <Text flexShrink={0} color="#a0a0a0">
-        {dayjs(createdAt).format('hh:mm A')}
+        {happenedAt?.format('hh:mm A') ?? ''}
       </Text>
     </HStack>
   )

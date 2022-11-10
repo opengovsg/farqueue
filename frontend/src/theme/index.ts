@@ -7,6 +7,11 @@ import { textStyles } from './textStyles'
 
 export const theme = extendTheme({
   ...ogpTheme,
+  breakpoints: {
+    md: '48em',
+    lg: '62em',
+    xl: '80em',
+  },
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   components: {
     ...ogpTheme.components,

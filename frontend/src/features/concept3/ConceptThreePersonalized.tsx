@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom'
-import { HStack, Text, VStack } from '@chakra-ui/react'
+import { Divider, Stack, Text, VStack } from '@chakra-ui/react'
+import { useBreakpointValue } from '@chakra-ui/react'
 import dayjs from 'dayjs'
 
 import { LastModifiedText } from '~/common/LastModifiedText'
-import { Timeline } from '~/common/Timeline'
-import { TimelineRowProps } from '~/common/Timeline/TimelineRow'
+import { Timeline } from '~/common/Timeline/Timeline'
+import { TimelineRowProps } from '~/common/Timeline/timeline.types'
 
 import { LeaveNoteEditable } from './LeaveNoteEditable'
 import { LegendRow } from './Legend'
@@ -12,40 +13,55 @@ import { LegendRow } from './Legend'
 // MOCK
 const events: TimelineRowProps[] = [
   {
+    headerText: 'Dispensary',
+  },
+  {
     headerText: 'Admitted to TTSH Emergency Department',
-    createdAt: dayjs().subtract(9, 'hours').toDate(),
+    happenedAt: dayjs().subtract(17, 'hours'),
   },
   {
     headerText: 'Admitted to ICU',
-    createdAt: dayjs().subtract(7, 'hours').subtract(24, 'minute').toDate(),
+    happenedAt: dayjs().subtract(16, 'hours').subtract(24, 'minute'),
   },
   {
     headerText: 'Admitted to Radiology (L5-R3)',
-    createdAt: dayjs().subtract(5, 'hours').subtract(12, 'minute').toDate(),
+    happenedAt: dayjs().subtract(8, 'hours').subtract(12, 'minute'),
   },
   {
     headerText: 'Warded at L4 (Room 4)',
-    createdAt: dayjs().subtract(3, 'hours').subtract(12, 'minute').toDate(),
+    happenedAt: dayjs().subtract(1, 'hours').subtract(48, 'minute'),
   },
 ]
 
 export const ConceptThreePersonalized = (): JSX.Element => {
   const { uin } = useParams()
 
+  const divider = useBreakpointValue(
+    {
+      base: <Divider />,
+      md: <></>,
+    },
+    {
+      fallback: 'md',
+    },
+  )
+
   console.log(uin)
 
   return (
     <VStack
-      w="100vw"
       spacing={12}
-      p={10}
-      px={20}
+      p={8}
       backgroundColor="neutral.100"
       alignItems="center"
     >
       <Text textStyle="h1">Live status</Text>
-
-      <HStack w="full" spacing={10}>
+      <Stack
+        w="full"
+        spacing={10}
+        direction={{ base: 'column', md: 'row' }}
+        divider={divider}
+      >
         <VStack align="start" minW="25vw" spacing={6}>
           <VStack w="full" align="start">
             <Text textStyle="body-2">Patient Name</Text>
@@ -64,7 +80,8 @@ export const ConceptThreePersonalized = (): JSX.Element => {
         </VStack>
 
         <Timeline rows={events} />
-      </HStack>
+      </Stack>
+      <Divider />
       <LeaveNoteEditable />
     </VStack>
   )

@@ -64,7 +64,7 @@ const data = {
     {
       label: 'Live',
       data: labels.map((l, idx) => {
-        const hour = dayjs().add(8, 'hours').hour()
+        const hour = dayjs().hour()
         if (idx !== hour) return 0
         return 8
       }),
