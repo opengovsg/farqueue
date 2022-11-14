@@ -6,7 +6,7 @@ import { PrivateRoute } from '~/app/PrivateRoute'
 import { PublicRoute } from '~/app/PublicRoute'
 import { routes } from '~/common/constants/routes'
 import { LoginPage } from '~/features/auth/LoginPage'
-import { ConceptOne, ContributorPage } from '~/features/concept1'
+import { ConceptOne } from '~/features/concept1'
 import { ConceptTwo } from '~/features/concept2'
 import { ConceptThreePersonalized, ConceptThreeTv } from '~/features/concept3'
 import { Landing } from '~/features/landing'
@@ -37,14 +37,6 @@ export const AppRouter = (): JSX.Element => {
           element={
             <PublicRoute>
               <ConceptOne />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path={routes.concept1Contribute}
-          element={
-            <PublicRoute>
-              <ContributorPage />
             </PublicRoute>
           }
         />

@@ -34,7 +34,7 @@ export const LastModifiedText = ({
           )}`
         : `Last edited on ${dayjs(latestModifiedDate).format(
             'DD/MM/YYYY HH:mm',
-          )} by ${lastEditedBy ?? 'unknown'}`}
+          )}${lastEditedBy ? ` by ${lastEditedBy}` : ''}`}
     </Box>
   )
 }

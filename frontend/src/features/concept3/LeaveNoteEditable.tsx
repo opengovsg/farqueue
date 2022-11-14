@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Heading,
   HStack,
   Image,
   Text,
@@ -70,28 +71,33 @@ export const LeaveNoteEditable = (): JSX.Element => {
     return (
       <VStack alignItems="center" spacing={2} pb={10}>
         <Image src={EnvelopeSvg} alt="envelope" />
-        <Box fontWeight="medium">No note added yet.</Box>
+        <Box fontWeight="medium">Leave a note for our staff</Box>
         <Button p={0} variant="link" rightIcon={<BiPlus />} onClick={onEdit}>
-          Leave a note for our staff
+          Add Note
         </Button>
       </VStack>
     )
   }
 
   return (
-    <Editable
-      closeOnBlur={false}
-      initialValue={note}
-      onSubmit={(content) => {
-        setNote(content as string)
-        toast({
-          title: 'Note saved. It will be viewable by our staff.',
-          status: 'success',
-        })
-      }}
-      editView={<DiagnosisEditView />}
-      plainView={<DiagnosisPlainView />}
-      emptyView={<DiagnosisEmptyView />}
-    />
+    <VStack w="full" spacing={4}>
+      <Heading alignSelf="start" color="#445072" size="sm">
+        Notes for our staff
+      </Heading>
+      <Editable
+        closeOnBlur={false}
+        initialValue={note}
+        onSubmit={(content) => {
+          setNote(content as string)
+          toast({
+            title: 'Note saved. It will be viewable by our staff.',
+            status: 'success',
+          })
+        }}
+        editView={<DiagnosisEditView />}
+        plainView={<DiagnosisPlainView />}
+        emptyView={<DiagnosisEmptyView />}
+      />
+    </VStack>
   )
 }

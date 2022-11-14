@@ -19,7 +19,7 @@ export const rows: PatientRowProps[] = [
     isSeeingDoctor: true,
   },
   {
-    name: 'Bustard Lee',
+    name: 'Oscar Grouch',
     uin: 'T1234567A',
     wait: '31 min ago',
     location: 'Pharmacy',
@@ -27,7 +27,7 @@ export const rows: PatientRowProps[] = [
     isSeeingDoctor: false,
   },
   {
-    name: 'Bob Tan',
+    name: 'Bert Oz',
     uin: 'T1238120B',
     wait: '45 min ago',
     location: 'Observation',
@@ -60,7 +60,7 @@ export const rows: PatientRowProps[] = [
   },
 
   {
-    name: 'Grover Bean',
+    name: 'Grover Jacobson',
     uin: 'T1234002L',
     wait: '39 min ago',
     location: 'Pharmacy',

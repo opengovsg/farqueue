@@ -54,7 +54,11 @@ export const Landing = () => {
           >
             User website
           </Button>
-          <Link href="https://covid.gov.sg" isExternal w="full">
+          <Link
+            href="https://www.ttsh.com.sg/Patients-and-Visitors/Medical-Services/Emergency/Pages/Emergency%20Medicine.aspx"
+            isExternal
+            w="full"
+          >
             <Button w="full">FAQ website</Button>
           </Link>
         </VStack>

@@ -8,7 +8,6 @@ import {
 } from '@chakra-ui/react'
 
 import { fmtTime } from '~/common/util/humanReadable'
-import { useParamsLocation } from '~/hooks/useParamsLocation'
 
 import GoQrSvg from '../../assets/svgs/sample-go.svg'
 
@@ -32,7 +31,7 @@ const waits: WaitTime[] = [
 ]
 
 export const ConceptTwo = (): JSX.Element => {
-  const { location } = useParamsLocation()
+  // const { location } = useParamsLocation()
 
   return (
     <HStack h="100vh" w="100vw">
@@ -44,7 +43,7 @@ export const ConceptTwo = (): JSX.Element => {
         backgroundColor="neutral.100"
       >
         <HStack align="center">
-          <Text textStyle="h1">{`Wait time at ${location} now: `}</Text>
+          <Text textStyle="h1">{`Wait Time for Non-Critical Cases now: `}</Text>
           <Text textStyle="h1" textAlign="center" fontWeight="bold">
             8H
           </Text>

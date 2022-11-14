@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import {
+  Flex,
   GridItem,
-  HStack,
   Image,
   SimpleGrid,
   Text,
@@ -42,8 +42,9 @@ export const ConceptOne = (): JSX.Element => {
   }, [location])
 
   return (
-    <HStack h="100vh" w="100vw">
+    <Flex h="100vh" w="100vw">
       <VStack
+        flex={2}
         h="full"
         alignItems="center"
         spacing="72px"
@@ -51,7 +52,7 @@ export const ConceptOne = (): JSX.Element => {
         backgroundColor="neutral.100"
       >
         <Text textStyle="h1" textAlign="center">
-          Estimated A&amp;E Waiting Time For Non-Critical Conditions
+          Average Wait Time for Non-Critical Cases
         </Text>
 
         <VStack spacing={4}>
@@ -93,6 +94,7 @@ export const ConceptOne = (): JSX.Element => {
         <Text color="white">{`https://wait.health.gov.sg`}</Text>
       </VStack>
       <VStack
+        flex={1}
         h="full"
         alignItems="center"
         spacing="72px"
@@ -107,6 +109,6 @@ export const ConceptOne = (): JSX.Element => {
           go.gov.sg/clinics-near-ttsh
         </Text>
       </VStack>
-    </HStack>
+    </Flex>
   )
 }

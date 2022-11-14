@@ -49,16 +49,11 @@ export const ConceptThreePersonalized = (): JSX.Element => {
   console.log(uin)
 
   return (
-    <VStack
-      spacing={12}
-      p={8}
-      backgroundColor="neutral.100"
-      alignItems="center"
-    >
+    <VStack spacing={6} p={8} backgroundColor="neutral.100" alignItems="center">
       <Text textStyle="h1">Live status</Text>
       <Stack
         w="full"
-        spacing={10}
+        spacing={6}
         direction={{ base: 'column', md: 'row' }}
         divider={divider}
       >
