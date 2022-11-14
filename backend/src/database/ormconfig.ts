@@ -17,7 +17,7 @@ export default {
   database: config.get('database.name'),
   logging: config.get('database.logging'),
   // https://docs.nestjs.com/techniques/database#auto-load-entities
-  synchronize: true, // do not automatically sync entities
+  synchronize: false, // do not automatically sync entities
   migrationsRun: false,
   // js for runtime, ts for typeorm cli
   entities: [join(__dirname, 'entities', '*.entity{.js,.ts}')],

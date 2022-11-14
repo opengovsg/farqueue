@@ -4,6 +4,10 @@ export interface ConfigSchema {
   port: number
   environment: 'development' | 'staging' | 'production' | 'test'
   awsRegion: string
+  apiKey: {
+    length: number
+    alg: string
+  }
   database: {
     host: string
     username: string
@@ -70,6 +74,19 @@ export const schema: Schema<ConfigSchema> = {
     env: 'AWS_REGION',
     format: '*',
     default: '',
+  },
+  apiKey: {
+    length: {
+      doc: 'Length of API key',
+      env: 'API_KEY_LENGTH',
+      format: 'int',
+      default: 64,
+    },
+    alg: {
+      doc: 'Hash algorithm to use for API key',
+      env: 'API_KEY_ALGO',
+      default: 'sha256',
+    },
   },
   database: {
     username: {
