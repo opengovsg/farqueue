@@ -9,6 +9,7 @@ import { TimelineRowProps } from '~/common/Timeline/timeline.types'
 
 import { LeaveNoteEditable } from './LeaveNoteEditable'
 import { LegendRow } from './Legend'
+import { ShareLink } from './ShareLink'
 
 // MOCK
 const events: TimelineRowProps[] = [
@@ -78,6 +79,8 @@ export const ConceptThreePersonalized = (): JSX.Element => {
       </Stack>
       <Divider />
       <LeaveNoteEditable />
+      <Divider />
+      <ShareLink />
     </VStack>
   )
 }

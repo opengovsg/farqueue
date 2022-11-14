@@ -22,7 +22,7 @@ export const Landing = () => {
       divider={<StackDivider borderColor="gray.200" />}
     >
       <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle="h1">Concept 1 - Comparing EDs</Text>
+        <Text textStyle="h1">Concept 1a - Comparing EDs</Text>
         <VStack align="start">
           <Button w="full" onClick={() => navigate(routes.concept1)}>
             The TV screen
@@ -34,7 +34,7 @@ export const Landing = () => {
       </Flex>
 
       <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle="h1">Concept 2 - Historical ED averages</Text>
+        <Text textStyle="h1">Concept 1b - Historical ED averages</Text>
         <VStack align="start">
           <Button w="full" onClick={() => navigate(routes.concept2)}>
             The TV screen
@@ -43,7 +43,7 @@ export const Landing = () => {
       </Flex>
 
       <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle="h1">Concept 3 - Where is my NOK?</Text>
+        <Text textStyle="h1">Concept 2 - Where is my NOK?</Text>
         <VStack align="start">
           <Button onClick={() => navigate(routes.concept3)} w="full">
             The TV screen

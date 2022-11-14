@@ -7,6 +7,7 @@ import { HelmetMiddleware } from 'middlewares/helmet.middleware'
 import { SessionMiddleware } from 'middlewares/session.middleware'
 import { LoggerModule } from 'nestjs-pino'
 import { join } from 'path'
+import { GlobalValidationPipe } from 'pipes/global-validation.pipe'
 import { TraceIdProvider } from 'providers/trace-id.provider'
 
 import { ConfigService } from './config/config.service'
@@ -19,17 +20,31 @@ const FRONTEND_PATH = join(__dirname, '..', '..', 'frontend', 'build')
     ApiModule,
     ConfigModule,
     LoggerModule.forRootAsync({
-      providers: [TraceIdProvider],
+      providers: [GlobalValidationPipe, TraceIdProvider],
       inject: [TraceIdProvider],
       useFactory: (traceProvider: TraceIdProvider) => ({
         pinoHttp: {
           genReqId: traceProvider.getTraceId.bind(undefined),
-          customProps: (req) => {
-            const context = {
-              trace_id: req.headers['x-datadog-trace-id'],
-              xray_id: req.headers['x-amzn-trace-id'],
-            }
-            return { context, scope: 'NestApplication' }
+          serializers: {
+            req: (req) => {
+              if (process.env.NODE_ENV === 'development') {
+                return {
+                  method: req.method,
+                  url: req.url,
+                }
+              } else {
+                return req
+              }
+            },
+            res: (res) => {
+              if (process.env.NODE_ENV === 'development') {
+                return {
+                  statusCode: res.statusCode,
+                }
+              } else {
+                return res
+              }
+            },
           },
           customSuccessMessage: (req, res) => {
             return `${req.method ?? ''} ${req.url ?? ''} ${res.statusCode}`

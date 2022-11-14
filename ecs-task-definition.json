@@ -57,6 +57,22 @@
         {
           "name": "SESSION_SECRET",
           "valueFrom": "/fq/<ENV>/SESSION_SECRET"
+        },
+        {
+          "name": "TWILIO_ACCOUNT_SID",
+          "valueFrom": "/fq/<ENV>/TWILIO_ACCOUNT_SID"
+        },
+        {
+          "name": "TWILIO_MESSAGING_SID",
+          "valueFrom": "/fq/<ENV>/TWILIO_MESSAGING_SID"
+        },
+        {
+          "name": "TWILIO_API_SECRET",
+          "valueFrom": "/fq/<ENV>/TWILIO_API_SECRET"
+        },
+        {
+          "name": "TWILIO_API_KEY",
+          "valueFrom": "/fq/<ENV>/TWILIO_API_KEY"
         }
       ],
       "logConfiguration": {

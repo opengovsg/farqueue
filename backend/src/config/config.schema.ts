@@ -26,6 +26,12 @@ export interface ConfigSchema {
       maxAge: number
     }
   }
+  twilio: {
+    apiKey: string
+    apiSecret: string
+    accountSid: string
+    messagingSid: string
+  }
   otp: {
     expiry: number
     secret: string
@@ -154,6 +160,28 @@ export const schema: Schema<ConfigSchema> = {
         format: 'int',
         default: 24 * 60 * 60 * 1000, // 24 hours
       },
+    },
+  },
+  twilio: {
+    apiKey: {
+      env: 'TWILIO_API_KEY',
+      sensitive: true,
+      default: 'twilio-api-key',
+    },
+    apiSecret: {
+      env: 'TWILIO_API_SECRET',
+      sensitive: true,
+      default: 'twilio-api-secret',
+    },
+    accountSid: {
+      env: 'TWILIO_ACCOUNT_SID',
+      sensitive: true,
+      default: 'twilio-account-sid',
+    },
+    messagingSid: {
+      env: 'TWILIO_MESSAGING_SID',
+      sensitive: true,
+      default: 'twilio-messaging-sid',
     },
   },
   otp: {

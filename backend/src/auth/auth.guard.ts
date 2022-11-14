@@ -1,5 +1,4 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
-import { getApiKeyFromHeader } from 'auth/auth.utils'
 import { ClientsService } from 'clients/clients.service'
 import { Request } from 'express'
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino'
@@ -26,10 +25,20 @@ export class AuthGuard implements CanActivate {
     }
   }
 
+  private getApiKeyFromHeader(req: Request) {
+    const header = req.get('Authorization') || req.get('authorization')
+    if (!header) return undefined
+
+    const [tokenType, apiKey] = header.trim().split(' ')
+    if (tokenType.toLowerCase() !== 'bearer') return undefined
+
+    return apiKey
+  }
+
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest<Request>()
 
-    const apiKey = getApiKeyFromHeader(req)
+    const apiKey = this.getApiKeyFromHeader(req)
     if (!apiKey) return false
     return this.authenticateApiKey(req, apiKey)
   }

@@ -18,7 +18,6 @@ export class ClientsService {
     const apiKeyHash = crypto.createHash(alg).update(apiKey).digest('base64')
     const client = await this.repository.findOne({
       where: { apiKeyHash },
-      relations: ['scopes'],
     })
     if (!client) throw new Error(`Client not found`)
     return client

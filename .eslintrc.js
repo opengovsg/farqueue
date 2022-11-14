@@ -47,6 +47,7 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/no-unused-vars': ['warn'],
     // Rules for auto sort of imports
     'simple-import-sort/imports': [
       'error',
