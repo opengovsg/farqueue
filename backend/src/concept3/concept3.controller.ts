@@ -8,6 +8,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common'
 import { AuthGuard } from 'auth/auth.guard'
+import crypto from 'crypto'
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino'
 import { SmsService } from 'sms/sms.service'
 
@@ -27,14 +28,12 @@ export class Concept3Controller {
   ) {}
 
   @Post('sms')
-  async create(@Body() { mobileNumber }: SendSmsReq): Promise<void> {
-    this.logger.info({
-      recipient: mobileNumber,
-      content: `Your next-of-kin has successfully registered at TTSH. Track their progress live at https://wait.beta.gov.sg/concept3/ab103e3f94e2715ff9361`,
-    })
+  async create(@Body() { mobileNumber, uin }: SendSmsReq): Promise<void> {
+    const uinHash = crypto.createHash('sha256').update(uin).digest('hex')
+
     const { messageId } = await this.smsService.send({
       recipient: mobileNumber,
-      content: `Your next-of-kin has successfully registered at TTSH. Track their progress live at https://wait.beta.gov.sg/concept3/ab103e3f94e2715ff9361`,
+      content: `Your next-of-kin has successfully registered at TTSH. Track their progress live at https://wait.beta.gov.sg/concept3/${uinHash}`,
     })
 
     this.logger.info({ messageId })

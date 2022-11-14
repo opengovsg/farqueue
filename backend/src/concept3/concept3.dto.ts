@@ -1,5 +1,25 @@
 import { Expose, Transform } from 'class-transformer'
-import { IsDefined, IsMobilePhone } from 'class-validator'
+import {
+  IsDefined,
+  IsMobilePhone,
+  IsString,
+  Validate,
+  ValidationArguments,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+} from 'class-validator'
+import nric from 'nric'
+
+@ValidatorConstraint({ name: 'customText', async: false })
+export class IsNricFin implements ValidatorConstraintInterface {
+  validate(text: string, _args: ValidationArguments) {
+    return nric.validate(text ?? '')
+  }
+
+  defaultMessage(_args: ValidationArguments) {
+    return 'Invalid NRIC/FIN'
+  }
+}
 
 export class SendSmsReq {
   @Transform(({ value }: { value: string | null }) => {
@@ -10,4 +30,9 @@ export class SendSmsReq {
   @Expose()
   @IsDefined()
   mobileNumber: string
+
+  @IsString()
+  @IsDefined()
+  @Validate(IsNricFin)
+  uin: string
 }
