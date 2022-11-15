@@ -3,7 +3,8 @@
     "baseUrl": "./",
     "paths": {
       "~shared/*": ["../shared/src/*"],
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "~backend/*": ["../backend/src/*"]
     }
   }
 }

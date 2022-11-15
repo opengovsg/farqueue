@@ -11,7 +11,7 @@ import { AppRouter } from './AppRouter'
 
 export const queryClient = new QueryClient()
 export const App = (): JSX.Element => (
-  <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient} contextSharing={true}>
     <ThemeProvider resetCSS theme={theme}>
       <MastHead
         bgColor={'red.200'}

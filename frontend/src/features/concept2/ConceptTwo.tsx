@@ -3,6 +3,7 @@ import {
   HStack,
   Image,
   SimpleGrid,
+  Stack,
   Text,
   VStack,
 } from '@chakra-ui/react'
@@ -34,28 +35,27 @@ export const ConceptTwo = (): JSX.Element => {
   // const { location } = useParamsLocation()
 
   return (
-    <HStack h="100vh" w="100vw">
+    <Stack h="100vh" w="100vw" direction={{ base: 'column', md: 'row' }}>
       <VStack
         h="full"
         alignItems="center"
         spacing={8}
-        p={10}
+        p={6}
         backgroundColor="neutral.100"
       >
         <HStack align="center">
-          <Text textStyle="h1">{`Wait Time for Non-Critical Cases now: `}</Text>
-          <Text textStyle="h1" textAlign="center" fontWeight="bold">
-            8H
-          </Text>
+          <Text
+            textStyle={{ base: 'h3', md: 'h1' }}
+          >{`Wait Time for Non-Critical Cases now: 8H`}</Text>
         </HStack>
 
         <Barchart />
 
-        <Text color="neutral.800" textStyle="h1" textAlign="center">
+        <Text textStyle={{ base: 'h3', md: 'h1' }} color="neutral.800">
           Wait times at nearby clinics
         </Text>
 
-        <SimpleGrid columns={4} w="full" spacing={6}>
+        <SimpleGrid columns={{ base: 2, md: 4 }} w="full" spacing={6}>
           {waits.map(({ label, wait, subtitle }) => (
             <GridItem key={label}>
               <VStack spacing={2} align="center" textAlign="center">
@@ -73,14 +73,13 @@ export const ConceptTwo = (): JSX.Element => {
         <Text color="white">{`https://wait.health.gov.sg`}</Text>
       </VStack>
       <VStack
-        maxW="35vw"
         h="full"
         alignItems="center"
         spacing="60px"
-        p={10}
+        p={6}
         backgroundColor="white"
       >
-        <Text textStyle="h1" textAlign="center">
+        <Text textStyle={{ base: 'h3', md: 'h1' }}>
           Free transfer to nearby clinics
         </Text>
         <VStack spacing={4}>
@@ -96,6 +95,6 @@ export const ConceptTwo = (): JSX.Element => {
           </Text>
         </VStack>
       </VStack>
-    </HStack>
+    </Stack>
   )
 }

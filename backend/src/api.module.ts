@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { RouterModule } from '@nestjs/core'
 import { TerminusModule } from '@nestjs/terminus'
 import { Concept3Module } from 'concept3/concept3.module'
+import { PatientModule } from 'patient/patient.module'
 import { ReportsModule } from 'reports/reports.module'
 
 import { AuthModule } from './auth/auth.module'
@@ -17,6 +18,7 @@ const apiModules = [
   MailerModule,
   ReportsModule,
   Concept3Module,
+  PatientModule,
 ]
 
 @Module({

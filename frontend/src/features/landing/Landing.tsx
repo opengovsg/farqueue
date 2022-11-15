@@ -17,13 +17,15 @@ export const Landing = () => {
       w="full"
       h="100vh"
       spacing={10}
-      px="160px"
-      py="80px"
+      py="5vh"
+      px="5vw"
       divider={<StackDivider borderColor="gray.200" />}
     >
       <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle="h1">Concept 1a - Comparing EDs</Text>
-        <VStack align="start">
+        <Text textStyle={{ base: 'h3', md: 'h1' }}>
+          Concept 1a - Comparing EDs
+        </Text>
+        <VStack align="start" ml="6px">
           <Button w="full" onClick={() => navigate(routes.concept1)}>
             The TV screen
           </Button>
@@ -34,7 +36,9 @@ export const Landing = () => {
       </Flex>
 
       <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle="h1">Concept 1b - Historical ED averages</Text>
+        <Text textStyle={{ base: 'h3', md: 'h1' }}>
+          Concept 1b - Historical ED averages
+        </Text>
         <VStack align="start">
           <Button w="full" onClick={() => navigate(routes.concept2)}>
             The TV screen
@@ -43,13 +47,19 @@ export const Landing = () => {
       </Flex>
 
       <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle="h1">Concept 2 - Where is my NOK?</Text>
+        <Text textStyle={{ base: 'h3', md: 'h1' }}>
+          Concept 2 - Where is my NOK?
+        </Text>
         <VStack align="start">
           <Button onClick={() => navigate(routes.concept3)} w="full">
             The TV screen
           </Button>
           <Button
-            onClick={() => navigate(`${routes.concept3}/S2608398B`)}
+            onClick={() =>
+              navigate(
+                `${routes.concept3}/59606430205e9f0d6106ba7ebadc75e1ce0c0d5fa96ca3809e75413d8b305ad4`,
+              )
+            }
             w="full"
           >
             User website

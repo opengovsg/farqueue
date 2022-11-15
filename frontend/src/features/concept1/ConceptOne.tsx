@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import {
-  Flex,
   GridItem,
   Image,
   SimpleGrid,
+  Stack,
   Text,
   VStack,
 } from '@chakra-ui/react'
@@ -42,16 +42,15 @@ export const ConceptOne = (): JSX.Element => {
   }, [location])
 
   return (
-    <Flex h="100vh" w="100vw">
+    <Stack h="100vh" w="100vw" direction={{ base: 'column', md: 'row' }}>
       <VStack
-        flex={2}
         h="full"
         alignItems="center"
         spacing="72px"
         p={10}
         backgroundColor="neutral.100"
       >
-        <Text textStyle="h1" textAlign="center">
+        <Text textStyle={{ base: 'h3', md: 'h1' }} textAlign="center">
           Average Wait Time for Non-Critical Cases
         </Text>
 
@@ -67,7 +66,7 @@ export const ConceptOne = (): JSX.Element => {
           </Text>
         </VStack>
 
-        <SimpleGrid columns={4} w="full" spacing={6}>
+        <SimpleGrid columns={{ base: 2, md: 4 }} w="full" spacing={6}>
           {waits
             .filter(({ label }) => label != currLocation.label)
             .map(({ label, wait }) => (
@@ -94,7 +93,6 @@ export const ConceptOne = (): JSX.Element => {
         <Text color="white">{`https://wait.health.gov.sg`}</Text>
       </VStack>
       <VStack
-        flex={1}
         h="full"
         alignItems="center"
         spacing="72px"
@@ -109,6 +107,6 @@ export const ConceptOne = (): JSX.Element => {
           go.gov.sg/clinics-near-ttsh
         </Text>
       </VStack>
-    </Flex>
+    </Stack>
   )
 }

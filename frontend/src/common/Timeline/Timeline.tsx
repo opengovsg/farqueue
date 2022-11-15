@@ -14,7 +14,7 @@ export const Timeline = ({ rows }: TimelineProps) => {
         (a.happenedAt?.valueOf() ?? dayjs().valueOf() + 1) -
         (b.happenedAt?.valueOf() ?? dayjs().valueOf() + 1),
     )) {
-      const day = row.happenedAt?.format('YYYY-MM-DD') ?? 'Pending'
+      const day = row.happenedAt?.format('YYYY-MM-DD') ?? 'Upcoming'
       if (!accum.has(day)) accum.set(day, [])
       accum.get(day)?.push(row)
     }

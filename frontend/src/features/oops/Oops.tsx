@@ -8,7 +8,7 @@ import OopsSvg from '../../assets/svgs/oops.svg'
 
 export const Oops = (): JSX.Element => {
   return (
-    <VStack h="100vh" w="100vw" spacing={10} justify="center">
+    <VStack h="100vh" w="100vw" spacing={10} justify="center" px="5vw">
       <Image src={OopsSvg} alt="oops" />
       <VStack>
         <Text textStyle="h2">Oops! Something went wrong.</Text>
