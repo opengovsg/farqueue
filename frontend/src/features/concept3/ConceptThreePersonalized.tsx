@@ -8,7 +8,7 @@ import { LastModifiedText } from '~/common/LastModifiedText'
 import { Timeline } from '~/common/Timeline/Timeline'
 
 import { LeaveNoteEditable } from './LeaveNoteEditable'
-import { LegendRow } from './Legend'
+import { LegendExplained } from './Legend'
 import { usePatient } from './queries'
 import { ShareLink } from './ShareLink'
 
@@ -36,24 +36,23 @@ export const ConceptThreePersonalized = (): JSX.Element => {
     <VStack spacing={6} p={8} backgroundColor="neutral.100" alignItems="center">
       <Text textStyle="h1">Live status</Text>
       <Stack
-        w="full"
         spacing={6}
         direction={{ base: 'column', md: 'row' }}
         divider={divider}
       >
         <VStack align="start" minW="25vw" spacing={6}>
-          <VStack w="full" align="start">
+          <VStack align="start">
             <Text textStyle="body-2">Patient Name</Text>
             <Text textStyle="h4">Grover Lee</Text>
           </VStack>
 
-          <VStack w="full" align="start">
+          <VStack align="start">
             <Text textStyle="body-2">Current Location</Text>
             <Text textStyle="h4">{`L4 (Room 4)`}</Text>
           </VStack>
-          <VStack w="full" align="start">
+          <VStack align="start">
             <Text textStyle="body-2">Status</Text>
-            <LegendRow isSeeingDoctor={false} isContactable={true} />
+            <LegendExplained isSeeingDoctor={false} isContactable={true} />
           </VStack>
           <LastModifiedText lastRetrieved={dayjs().subtract(5, 'minutes')} />
         </VStack>

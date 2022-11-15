@@ -21,6 +21,7 @@ const ICONS = [
   {
     icon: <MdOutlineHealthAndSafety />,
     label: 'Seeing a doctor',
+    nonLabel: 'Not seeing a doctor',
     accessor: (
       props: Pick<PatientRowProps, 'isContactable' | 'isSeeingDoctor'>,
     ) => props.isSeeingDoctor,
@@ -28,6 +29,7 @@ const ICONS = [
   {
     icon: <BiPhone />,
     label: 'Contactable',
+    nonLabel: 'Uncontactable',
     accessor: (
       props: Pick<PatientRowProps, 'isContactable' | 'isSeeingDoctor'>,
     ) => props.isContactable,
@@ -86,5 +88,29 @@ export const LegendRow = (
         )
       })}
     </ButtonGroup>
+  )
+}
+
+export const LegendExplained = (
+  props: Pick<PatientRowProps, 'isContactable' | 'isSeeingDoctor'>,
+): JSX.Element => {
+  return (
+    <VStack alignItems="flex-start" spacing={2}>
+      {ICONS.map(({ icon, label, nonLabel, accessor }) => {
+        return (
+          <HStack key={label}>
+            <Box
+              fontSize="1.25rem"
+              color={accessor(props) ? 'neutral.700' : 'neutral.300'}
+            >
+              {icon}
+            </Box>
+            <Text color={accessor(props) ? 'black' : 'neutral.700'}>
+              {accessor(props) ? label : nonLabel}
+            </Text>
+          </HStack>
+        )
+      })}
+    </VStack>
   )
 }

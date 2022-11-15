@@ -8,7 +8,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 
-import { LegendRow } from './Legend'
+import { LegendExplained } from './Legend'
 
 export interface PatientRowProps {
   name: string
@@ -35,7 +35,6 @@ export const PatientRow = (props: PatientRowProps) => {
       border="solid 1px #E9E9E9"
       borderRadius="md"
     >
-      <LegendRow {...props} />
       <VStack spacing={1} alignItems="flex-start" w={36} flexShrink={0}>
         <Text>{name}</Text>
         <Text color="neutral.700">{maskedUin}</Text>
@@ -47,7 +46,9 @@ export const PatientRow = (props: PatientRowProps) => {
             {wait}
           </Text>
         </GridItem>
-        <GridItem {...equalSizingProps}>{'some value'}</GridItem>
+        <GridItem {...equalSizingProps}>
+          <LegendExplained {...props} />
+        </GridItem>
         <GridItem {...equalSizingProps} noOfLines={1}>
           {'something else'}
         </GridItem>
@@ -58,7 +59,7 @@ export const PatientRow = (props: PatientRowProps) => {
 
 // This is a static row whose alignment matches RelativeCardHeader
 export const PatientTableHeader = () => {
-  const titles = ['Currently seen at', 'Some other info', 'More info']
+  const titles = ['Currently seen at', 'Status', 'More info']
 
   return (
     <HStack
@@ -66,7 +67,7 @@ export const PatientTableHeader = () => {
       w="full"
       fontWeight="medium"
       spacing={6}
-      pl="92px"
+      pl="16px"
       pr="16px"
     >
       <Text w={36} flexShrink={0}>
