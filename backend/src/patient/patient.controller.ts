@@ -30,11 +30,18 @@ export class PatientController {
       return []
     return [
       {
-        headerText: 'Dispensary',
+        headerText: 'Discharge',
       },
       {
-        headerText: 'Admitted to TTSH Emergency Department',
+        headerText: 'Admitted to Emergency Department',
         happenedAt: dayjs().subtract(17, 'hours').valueOf(),
+      },
+      {
+        headerText: 'Seen by Doctor',
+        happenedAt: dayjs()
+          .subtract(16, 'hours')
+          .subtract(51, 'minute')
+          .valueOf(),
       },
       {
         headerText: 'Admitted to ICU',
@@ -44,16 +51,16 @@ export class PatientController {
           .valueOf(),
       },
       {
-        headerText: 'Admitted to Radiology (L5-R3)',
+        headerText: 'Investigation (Radiology)',
         happenedAt: dayjs()
-          .subtract(8, 'hours')
+          .subtract(12, 'hours')
           .subtract(12, 'minute')
           .valueOf(),
       },
       {
         headerText: 'Warded at L4 (Room 4)',
         happenedAt: dayjs()
-          .subtract(1, 'hours')
+          .subtract(11, 'hours')
           .subtract(48, 'minute')
           .valueOf(),
       },
