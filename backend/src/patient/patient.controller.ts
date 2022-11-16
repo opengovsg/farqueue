@@ -24,11 +24,11 @@ export class PatientController {
 
   @Get(':id')
   async find(@Param('id') id: string): Promise<FindPatientRes[]> {
-    if (
-      id !== '59606430205e9f0d6106ba7ebadc75e1ce0c0d5fa96ca3809e75413d8b305ad4'
-    )
-      return []
+    if (id !== 'c92a184sf8') return []
     return [
+      {
+        headerText: 'Investigation (Gastroenterology)',
+      },
       {
         headerText: 'Discharge',
       },

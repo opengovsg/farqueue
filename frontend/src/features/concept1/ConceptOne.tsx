@@ -20,17 +20,17 @@ interface WaitTime {
 
 const waits: WaitTime[] = [
   { label: 'AH', fullName: 'Alexandra Hospital', wait: 100 },
-  { label: 'CGH', fullName: 'Changi General Hospital', wait: 200 },
+  { label: 'CGH', fullName: 'Changi General Hospital', wait: 440 },
   { label: 'KTPH', fullName: 'Khoo Teck Puat Hospital', wait: 321 },
-  { label: 'NTFGH', fullName: 'Ng Teng Fong General Hospital', wait: 600 },
+  { label: 'NTFGH', fullName: 'Ng Teng Fong General Hospital', wait: 1120 },
   {
     label: 'NUH(A)',
     fullName: 'National University Hospital (Adult)',
-    wait: 123,
+    wait: 1050,
   },
-  { label: 'SGH', fullName: 'Singapore General Hospital', wait: 1230 },
-  { label: 'SKH', fullName: 'Sengkang Hospital', wait: 1320 },
-  { label: 'TTSH', fullName: 'Tan Tock Seng Hospital', wait: 120 },
+  { label: 'SGH', fullName: 'Singapore General Hospital', wait: 240 },
+  { label: 'SKH', fullName: 'Sengkang Hospital', wait: 310 },
+  { label: 'TTSH', fullName: 'Tan Tock Seng Hospital', wait: 1200 },
 ]
 
 export const ConceptOne = (): JSX.Element => {
