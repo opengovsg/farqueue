@@ -3,7 +3,6 @@ import {
   IsDefined,
   IsMobilePhone,
   IsString,
-  Validate,
   ValidationArguments,
   ValidatorConstraint,
   ValidatorConstraintInterface,
@@ -33,6 +32,6 @@ export class SendSmsReq {
 
   @IsString()
   @IsDefined()
-  @Validate(IsNricFin)
+  // @Validate(IsNricFin)
   uin: string
 }

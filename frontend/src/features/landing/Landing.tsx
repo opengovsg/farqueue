@@ -55,11 +55,7 @@ export const Landing = () => {
             The TV screen
           </Button>
           <Button
-            onClick={() =>
-              navigate(
-                `${routes.concept3}/59606430205e9f0d6106ba7ebadc75e1ce0c0d5fa96ca3809e75413d8b305ad4`,
-              )
-            }
+            onClick={() => navigate(`${routes.concept3}/c92a184sf8`)}
             w="full"
           >
             User website
