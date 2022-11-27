@@ -3,9 +3,9 @@ export const routes = {
   login: '/login',
   health: '/health',
   oops: '/oops',
-  concept1: '/concept1',
-  concept1Contribute: '/concept1/contribute',
+  concept1a: '/concept1a',
+  concept1b: '/concept1b',
+  concept1c: '/concept1c',
   concept2: '/concept2',
-  concept3: '/concept3',
-  concept3Patient: '/concept3/:uin',
+  concept2Patient: '/concept2/:uin',
 }

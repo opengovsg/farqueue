@@ -20,12 +20,12 @@ export const ShareLink = () => {
         <InputGroup>
           <Input
             isReadOnly
-            value={`https://wait.beta.gov.sg/concept3/${uin!}`}
+            value={`https://wait.beta.gov.sg/concept2/${uin!}`}
           />
           <InputRightElement>
             <CopyButton
               colorScheme="secondary"
-              stringToCopy={`https://wait.beta.gov.sg/concept3/${uin!}`}
+              stringToCopy={`https://wait.beta.gov.sg/concept2/${uin!}`}
               aria-label="Copy respondent form link"
             />
           </InputRightElement>

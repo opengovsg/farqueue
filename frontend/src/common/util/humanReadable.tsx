@@ -30,19 +30,21 @@ export const fmtTime = (
     )
 
   if (minutes > 0 && ['minutes', 'seconds'].includes(precision))
-    accum.push(
+    accum.unshift(
       verbose
         ? `${minutes} ${minutes <= 1 ? 'minute' : 'minutes'}`
         : `${minutes}m`,
     )
 
   if (hours > 0 && ['hours', 'minutes', 'seconds'].includes(precision))
-    accum.push(
+    accum.unshift(
       verbose ? `${hours} ${hours <= 1 ? 'hour' : 'hours'}` : `${hours}h`,
     )
 
   if (days > 0)
-    accum.push(verbose ? `${days} ${days <= 1 ? 'day' : 'days'}` : `${days}d`)
+    accum.unshift(
+      verbose ? `${days} ${days <= 1 ? 'day' : 'days'}` : `${days}d`,
+    )
 
   return accum.join(' ')
 }

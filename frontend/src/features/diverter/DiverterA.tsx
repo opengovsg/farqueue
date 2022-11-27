@@ -10,7 +10,6 @@ import {
 
 import GoQrSvg from '~/assets/svgs/sample-go.svg'
 import { fmtTime } from '~/common/util/humanReadable'
-import { useParamsLocation } from '~/hooks/useParamsLocation'
 
 interface WaitTime {
   label: string
@@ -33,8 +32,8 @@ const waits: WaitTime[] = [
   { label: 'TTSH', fullName: 'Tan Tock Seng Hospital', wait: 1200 },
 ]
 
-export const ConceptOne = (): JSX.Element => {
-  const { location } = useParamsLocation()
+export const DiverterA = (): JSX.Element => {
+  const location = 'AH'
 
   const currLocation = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

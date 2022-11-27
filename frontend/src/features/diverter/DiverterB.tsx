@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   GridItem,
   HStack,
@@ -9,6 +10,7 @@ import {
 } from '@chakra-ui/react'
 
 import { fmtTime } from '~/common/util/humanReadable'
+import { useParamsSelected } from '~/hooks/useParamsSelected'
 
 import GoQrSvg from '../../assets/svgs/sample-go.svg'
 
@@ -19,6 +21,17 @@ interface WaitTime {
   wait: number
   subtitle: string
 }
+
+const MainWait = {
+  AH: 50,
+  SGH: 170,
+  SKH: 110,
+  KTPH: 190,
+  TTSH: 230,
+  'NUH(A)': 210,
+  NTFGH: 350,
+  CGH: 480,
+} as const
 
 const waits: WaitTime[] = [
   { label: 'Prudence Family Clinic', subtitle: '800 m away', wait: 20 },
@@ -31,9 +44,13 @@ const waits: WaitTime[] = [
   { label: 'E Medical Clinic & Surgery', subtitle: '1.5 km away', wait: 10 },
 ]
 
-export const ConceptTwo = (): JSX.Element => {
-  // const { location } = useParamsLocation()
+export const DiverterB = (): JSX.Element => {
+  const { selected } = useParamsSelected()
 
+  const currWaitSeconds = useMemo(
+    () => MainWait[selected as keyof typeof MainWait] * 60,
+    [selected],
+  )
   return (
     <Stack h="100vh" w="100vw" direction={{ base: 'column', md: 'row' }}>
       <VStack
@@ -46,10 +63,12 @@ export const ConceptTwo = (): JSX.Element => {
         <HStack align="center">
           <Text
             textStyle={{ base: 'h3', md: 'h1' }}
-          >{`Wait Time for Non-Critical Cases now: 8H`}</Text>
+          >{`Wait Time for Non-Critical Cases now: ${fmtTime(
+            currWaitSeconds,
+          )}`}</Text>
         </HStack>
 
-        <Barchart />
+        <Barchart currentWait={currWaitSeconds} />
 
         <Text textStyle={{ base: 'h3', md: 'h1' }} color="neutral.800">
           Wait times at nearby clinics

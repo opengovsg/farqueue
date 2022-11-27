@@ -30,7 +30,7 @@ export class Concept3Controller {
   async create(@Body() { mobileNumber, uin }: SendSmsReq): Promise<void> {
     const { messageId } = await this.smsService.send({
       recipient: mobileNumber,
-      content: `Your next-of-kin has successfully registered at SGH. Track their progress live at https://wait.beta.gov.sg/concept3/${uin}`,
+      content: `Your next-of-kin has successfully registered at SGH. Track their progress live at https://wait.beta.gov.sg/concept2/${uin}`,
     })
 
     this.logger.info({ messageId })

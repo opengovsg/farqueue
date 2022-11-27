@@ -50,30 +50,30 @@ const labels = [
   '11pm',
 ]
 
-const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Historical Estimate',
-      data: [
-        2.4, 2.2, 2.0, 1.8, 1.5, 1.2, 1.6, 3.4, 5.6, 7.1, 7.3, 7.1, 6.9, 6.6,
-        5.7, 4.8, 4.1, 3.6, 3.2, 2.9, 2.7, 2.5, 2.3, 2.2,
-      ],
-      backgroundColor: 'rgba(99, 132, 255, 0.5)',
-    },
-    {
-      label: 'Live',
-      data: labels.map((l, idx) => {
-        const hour = dayjs().hour()
-        if (idx !== hour) return 0
-        return 8
-      }),
-      backgroundColor: 'rgba(255, 132, 100, 0.9)',
-    },
-  ],
-}
+export const Barchart = ({ currentWait }: { currentWait: number }) => {
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Historical Estimate',
+        data: [
+          2.4, 2.2, 2.0, 1.8, 1.5, 1.2, 1.6, 3.4, 5.6, 7.1, 7.3, 7.1, 6.9, 6.6,
+          5.7, 4.8, 4.1, 3.6, 3.2, 2.9, 2.7, 2.5, 2.3, 2.2,
+        ],
+        backgroundColor: 'rgba(99, 132, 255, 0.5)',
+      },
+      {
+        label: 'Live',
+        data: labels.map((l, idx) => {
+          const hour = dayjs().hour()
+          if (idx !== hour) return 0
+          return currentWait / 3600
+        }),
+        backgroundColor: 'rgba(255, 132, 100, 0.9)',
+      },
+    ],
+  }
 
-export const Barchart = () => {
   return (
     <Bar
       data={data}

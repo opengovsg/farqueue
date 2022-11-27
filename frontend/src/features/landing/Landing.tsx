@@ -21,13 +21,20 @@ export const Landing = () => {
       px="5vw"
       divider={<StackDivider borderColor="gray.200" />}
     >
-      <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle={{ base: 'h3', md: 'h1' }}>
-          Concept 1a - Comparing EDs
-        </Text>
+      <Flex flexDir="row" justify="space-between" w="full" align="center">
+        <Text textStyle={{ base: 'h3', md: 'h1' }}>Concept 1: Diverter</Text>
         <VStack align="start" ml="6px">
-          <Button w="full" onClick={() => navigate(routes.concept1)}>
-            The TV screen
+          <Button w="full" onClick={() => navigate(routes.concept1a)}>
+            A - TV screen
+          </Button>
+          <Button
+            w="full"
+            onClick={() => navigate(`${routes.concept1b}?selected=CGH`)}
+          >
+            B - TV screen
+          </Button>
+          <Button w="full" onClick={() => navigate(routes.concept1c)}>
+            C - User website
           </Button>
           <Link href="https://form.gov.sg/6351103151634c00116ca800" isExternal>
             <Button>Contributor Form</Button>
@@ -35,27 +42,14 @@ export const Landing = () => {
         </VStack>
       </Flex>
 
-      <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle={{ base: 'h3', md: 'h1' }}>
-          Concept 1b - Historical ED averages
-        </Text>
+      <Flex flexDir="row" justify="space-between" w="full" align="center">
+        <Text textStyle={{ base: 'h3', md: 'h1' }}>Concept 2: Tracker</Text>
         <VStack align="start">
-          <Button w="full" onClick={() => navigate(routes.concept2)}>
-            The TV screen
-          </Button>
-        </VStack>
-      </Flex>
-
-      <Flex flexDir="row" justify="space-between" w="full">
-        <Text textStyle={{ base: 'h3', md: 'h1' }}>
-          Concept 2 - Where is my NOK?
-        </Text>
-        <VStack align="start">
-          <Button onClick={() => navigate(routes.concept3)} w="full">
+          <Button onClick={() => navigate(routes.concept2)} w="full">
             The TV screen
           </Button>
           <Button
-            onClick={() => navigate(`${routes.concept3}/c92a184sf8`)}
+            onClick={() => navigate(`${routes.concept2}/c92a184sf8`)}
             w="full"
           >
             User website
